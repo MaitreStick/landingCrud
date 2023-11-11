@@ -12,7 +12,7 @@
 export default {
   methods: {
     goToAdminPanel() {
-      this.$router.push({name: 'adminpanel'})
+      this.$router.push({name: 'adminview'})
     }
   }
 }

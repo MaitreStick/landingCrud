@@ -1,5 +1,5 @@
 <template>
-    <div class="entry-list-container">
+    <div class="list-container">
         <div>
             <button class="btn btn-outline-info mx-2">
                 Add
@@ -13,7 +13,7 @@
             />
         </div>
 
-        <div class="entry-scrollarea">
+        <div class="list-scrollarea">
             <table class="table">
                 <thead>
                     <tr>
@@ -55,7 +55,7 @@
 input{
     margin-bottom: 1em;
 }
-.entry-list-container{
+.list-container{
     height: 40vh;
     width: 80vw;
     position: absolute;
@@ -64,7 +64,7 @@ input{
     transform: translate(-50%, -50%);
 }
 
-.entry-scrollarea{
+.list-scrollarea{
     height: calc( 90vh - 110px );
     overflow: scroll;
 }
