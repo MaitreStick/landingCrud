@@ -7,8 +7,13 @@ export default {
     children: [
         {
             path: '',
-            name: 'adminview',
-            component: () => import(/* webpackChunkName: "adminpanel" */ '@/modules/adminpanel/views/AdminView.vue'),
-        }
+            name: 'listview',
+            component: () => import(/* webpackChunkName: "listview" */ '@/modules/adminpanel/views/ListView.vue')
+        },
+        {
+            path: 'edit',
+            name: 'editview',
+            component: () => import(/* webpackChunkName: "edit" */ '@/modules/adminpanel/views/EditView.vue')
+        },
     ]
 }

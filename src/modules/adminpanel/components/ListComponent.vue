@@ -1,9 +1,8 @@
 <template>
-    <div class="list-container">
+    <div class="entry-list-container">
         <div>
-            <button class="btn btn-outline-info mx-2">
-                Add
-            </button>
+            <NewButton
+            />
         </div>
         <div class="px-2 pt-2">
             <input 
@@ -13,40 +12,21 @@
             />
         </div>
 
-        <div class="list-scrollarea">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Document</th>
-                        <th>Date</th>
-                        <th>Phone Number</th>
-                        <th>Options</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr v-for="item in 100" :key="item">
-                        <td>{{ item.id }}</td> 
-                        <td>{{ item.name }}</td>
-                        <td>{{ item.document }}</td>
-                        <td>{{ item.date }}</td> 
-                        <td>{{ item.phone_number }}</td>
-                        <td class="text-center">
-                            <button @click="editItem(item.id)" class="btn btn-outline-success mx-2" >Edit</button> 
-                            <button @click="deleteItem(item.id)" class="btn btn-outline-danger mx-2" >Delete</button> 
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="entry-scrollarea">
+            <Entry
+            />
         </div>
 
     </div>
 </template>
 
 <script>
+import { defineAsyncComponent } from 'vue';
     export default{
-
+        components: {
+            NewButton: defineAsyncComponent(() => import('./NewButton.vue')),
+            Entry: defineAsyncComponent(() => import('./Entry.vue')),
+        }
     }
 </script>
 
@@ -55,29 +35,16 @@
 input{
     margin-bottom: 1em;
 }
-.list-container{
-    height: 40vh;
-    width: 80vw;
+.entry-list-container{
+    height: calc( 40vh );
+    width: calc(80vw);
     position: absolute;
     top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.list-scrollarea{
+.entry-scrollarea{
     height: calc( 90vh - 110px );
-    overflow: scroll;
 }
-
-table {
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    th, td {
-        padding: 8px;
-        text-align: center;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
 </style>
