@@ -7,6 +7,7 @@
                     <th>Document</th>
                     <th>Date</th>
                     <th>Phone</th>
+                    <th>PDF</th>
                     <th>Options</th>
                 </tr>
             </thead>
@@ -17,6 +18,7 @@
                     <td>{{ item.document }}</td>
                     <td>{{ item.date }}</td> 
                     <td>{{ item.phone }}</td> 
+                    <td>{{ item.pdf }}</td> 
                     <td class="text-center">
                         <button @click="goToEditView()" class="btn btn-outline-success mx-2" >Edit</button>
                         <button class="btn btn-outline-danger mx-2" >Delete</button>
