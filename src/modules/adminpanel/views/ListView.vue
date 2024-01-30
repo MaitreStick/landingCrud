@@ -1,15 +1,22 @@
 <template>
-    <div class="col-4">
+    <div>
         <ListComponent/>
     </div>
 </template>
 
 <script>
 import { defineAsyncComponent } from 'vue';
+import { mapActions } from 'vuex';
 
 export default {
-    components:{
+    components: {
         ListComponent: defineAsyncComponent(() => import('../components/ListComponent.vue'))
+    },
+    created() {
+        this.loadEntries();
+    },
+    methods: {
+        ...mapActions('adminModule', ['loadEntries']),
     }
 }
 </script>
