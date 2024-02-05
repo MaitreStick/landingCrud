@@ -1,5 +1,8 @@
 <template>
-    <Navbar/>
+    <div>
+        <Navbar/>
+    </div>
+
     <div class="f-flex">
         <div class="col">
             <router-view></router-view>
