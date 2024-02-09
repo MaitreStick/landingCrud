@@ -1,50 +1,52 @@
 <template>
-    <div class="entry-list-container">
-        <div>
-            <NewButton
-            />
+    <div class="flex flex-col justify-center mt-20">
+        <div class="container mx-auto mt-4 p-6 bg-white shadow-lg rounded-lg">
+            <div class="mb-4 flex justify-between items-center">
+                <input 
+                    type="text"
+                    v-model="term"
+                    placeholder="Buscar"
+                    class="form-control block w-full md:w-3/3 px-4 py-2 border border-gray-200 rounded shadow-sm focus:outline-none focus:border-blue-500"
+                />
+                <button @click="goToNewView" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    New
+                </button>
+            </div>
+            <div class="flex flex-col justify-center overflow-x-auto">
+                <Entry :term="term" />
+            </div>
         </div>
-        <div class="px-2 pt-2">
-            <input 
-                type="text"
-                class="form-control"
-                placeholder="Buscar"
-            />
-        </div>
-
-        <div class="entry-scrollarea">
-            <Entry
-            />
-        </div>
-
     </div>
 </template>
 
+
+
 <script>
 import { defineAsyncComponent } from 'vue';
-    export default{
-        components: {
-            NewButton: defineAsyncComponent(() => import('./NewButton.vue')),
-            Entry: defineAsyncComponent(() => import('./Entry.vue')),
+import { mapActions, mapGetters } from 'vuex';
+
+export default {
+    components: {
+        Entry: defineAsyncComponent(() => import('./Entry.vue')),
+    },
+    data() {
+        return {
+            term: ''
+        };
+    },
+    mounted() {
+    this.$store.dispatch('adminModule/loadEntries');
+    },
+    methods: {
+        ...mapActions('adminModule', ['loadEntries']),
+        goToNewView() {
+            this.$router.push({ name: 'createentry' });
         }
+    },
+    computed: {
+        ...mapGetters('adminModule', {
+            entriesByTerm: 'getEntriesByTerm'
+        }),
     }
+}
 </script>
-
-<style lang="scss" scoped>
-
-input{
-    margin-bottom: 1em;
-}
-.entry-list-container{
-    height: calc( 40vh );
-    width: calc(80vw);
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.entry-scrollarea{
-    height: calc( 90vh - 110px );
-}
-</style>
